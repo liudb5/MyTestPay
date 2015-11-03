@@ -78,13 +78,15 @@ public class CarrotPaySDKHelper extends Handler {
 			Log.e("init_cmcc异常捕捉", "异常："+e.toString());
 		}
 	}
+	
 	/**
 	 * 执行移动支付
 	 * @param		isUsesim		sim卡是否可用
 	 * @param		isRepeat		计费点是否可重复
 	 * @param		index			计费点编号
 	 * @param		order			订单号
-	 * */
+	 * @param 		callback		支付回调
+	 */
 	protected void cmcc_pay(boolean isUsesim,boolean isRepeat,String index,String order,final CarrotPayCallBack callback){
 		try {
 			cmcc_PayendHandler = new CarrotHandler(CarrotPaySDK.mContext){
@@ -95,8 +97,11 @@ public class CarrotPaySDKHelper extends Handler {
 					callback.onPayEnd(msg.what);
 				}
 			};
+			// 传入参数
 			Object [] cmcc_pay_param = {CarrotPaySDK.mContext,isUsesim,isRepeat,index,order,new Object()};
+			// 参数对应的TYPE
 			Class<?> [] cmcc_pay_paramtyp = {Context.class,boolean.class,boolean.class,String.class,String.class,Object.class};
+			// "IPayCallback" 是移动支付的回调函数名
 			cfcaim.invokeContainsInterfaceStaticMethod("cn.cmgame.billing.api.GameInterface", "doBilling", cmcc_pay_param,cmcc_pay_paramtyp,"IPayCallback",CarrotPaySdkFinal.CMCC_PAY);
 		} catch (Exception e) {
 			// TODO: handle exception
