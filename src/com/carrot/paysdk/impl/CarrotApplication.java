@@ -18,6 +18,7 @@ import android.app.Application;
  * 修改备注：
  */
 public class CarrotApplication extends Application {
+	//是否含有移动支付SDK
 	boolean useCMBilling = false;
 	@Override
 	public void onCreate() {

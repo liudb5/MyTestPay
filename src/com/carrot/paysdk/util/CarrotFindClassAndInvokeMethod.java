@@ -79,7 +79,7 @@ public class CarrotFindClassAndInvokeMethod {
 	 * @param	className		类名
 	 * @param	methodName		方法名
 	 * @param	oArray			方法参数
-	 * @param	paramTypeArray		构造参数
+	 * @param	paramTypeArray		构造参数类型
 	 * @author liudb
 	 * */
 	public Object invokeStaticMethod(String className, String methodName,
