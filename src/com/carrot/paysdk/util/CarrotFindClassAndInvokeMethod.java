@@ -65,10 +65,11 @@ public class CarrotFindClassAndInvokeMethod {
 		}
 		Method method = findMethod(ms, methodName, paramTypeArray, interfaceName);
 		Class<?> clazz = Class.forName(othre_callBack.getName());
-		
+		//因为接口的最后一个参数是回调函数，所以要设置监测回调
 		oArray[oArray.length -1] = Proxy.newProxyInstance(
 	            clazz.getClassLoader(),
 	            new Class[]{clazz},
+	            //payType 是一个判断支付类型的参数，可以不设置
 	            new CarrotPayCallbackMethodInterceptor(payType));
 		othre_callBack = null;
 		return method.invoke(owner, oArray);
@@ -107,6 +108,7 @@ public class CarrotFindClassAndInvokeMethod {
 		}
 		Method method = findMethod(ms, methodName, paramTypeArray, interfaceName);
 		Class<?> clazz = Class.forName(othre_callBack.getName());
+		//因为接口的最后一个参数是回调函数，所以要设置监测回调
 		oArray[oArray.length -1] = Proxy.newProxyInstance(
 	            clazz.getClassLoader(),
 	            new Class[]{clazz},
